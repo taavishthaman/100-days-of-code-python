@@ -23,21 +23,25 @@ for i in range(0, nr_numbers):
 print(f"Password using easy method is {pwd_easy}")
 
 #Hard version
-pwd_arr = []
-for i in range(0, nr_letters-nr_symbols-nr_numbers):
-    pwd_arr.append(random.choice(letters))
-
-for i in range(0, nr_symbols):
-    pwd_arr.append(random.choice(symbols))
-
-for i in range(0, nr_numbers):
-    pwd_arr.append(random.choice(numbers))
-
-random.shuffle(pwd_arr)
-
 pwd_hard = ""
-for char in pwd_arr:
-    pwd_hard += char
+total_letters = nr_letters - nr_symbols - nr_numbers
+i = 0
+while i < nr_letters:
+    #Take a choice of either choosing a letter = 0, symbol = 1 or number = 2
+    choice = random.randint(0,2)
+
+    if choice == 0 and total_letters > 0:
+        pwd_hard += random.choice(letters)
+        total_letters -= 1
+        i += 1
+    elif choice == 1 and nr_symbols > 0:
+        pwd_hard += random.choice(symbols)
+        nr_symbols -= 1
+        i += 1
+    elif choice == 2 and nr_numbers > 0:
+        pwd_hard += random.choice(numbers)
+        nr_numbers -= 1
+        i += 1
 
 print(f"Password using hard method is {pwd_hard}")
 
