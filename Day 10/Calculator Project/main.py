@@ -24,7 +24,6 @@ operations = {
     "/": divide
 }
 
-
 #TODO: Use the dictionary operations to perform the calculations. Multiply 4 * 8
 #print(operations["*"](4,8))
 
@@ -34,12 +33,9 @@ while program_running:
     continue_with_prev = True
     first_num = float(input("What's the first number?"))
     while continue_with_prev:
-        operation = input("""+
--
-*
-/
-Pick an operation:
-""")
+        for symbol in operations:
+            print(symbol)
+        operation = input("Pick an operation:")
         second_num = float(input("What's the next number?"))
         result = operations[operation](first_num, second_num)
         print(f"{first_num} {operation} {second_num} = {result}")
